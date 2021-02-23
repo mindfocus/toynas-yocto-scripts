@@ -407,10 +407,9 @@ if [ "x$REMOVEBUILD" == "xyes" ]; then
     rm -rf $SCRIPTPATH/../../$BUILD_DIR
 fi
 
-RESIN_MACHINE_LAYER=$(ls ${SCRIPTPATH}/../../layers/ | grep meta-balena-)
+RESIN_MACHINE_LAYER=$(ls ${SCRIPTPATH}/../../layers/ | grep meta-toynas-)
 
 # Configure build
-
 $SCRIPTPATH/generate-conf-notes.sh $SCRIPTPATH/../../layers/${RESIN_MACHINE_LAYER}/conf/ ${DEVICE_TYPES_JSONS}
 
 export TEMPLATECONF=${SCRIPTPATH}/../../layers/${RESIN_MACHINE_LAYER}/conf/samples

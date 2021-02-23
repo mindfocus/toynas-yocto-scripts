@@ -9,6 +9,7 @@ echo "Building JSON manifest..."
 
 cd `dirname $0`
 mydir=`pwd -P`
+echo $mydir
 rootdir=${1:-$mydir/../../}
 
 function quit {
@@ -23,14 +24,14 @@ which nodejs >/dev/null 2>&1 && NODE=nodejs || NODE=node
 if [ ! -x "$(command -v $NODE)" ]; then
     quit "ERROR - Please install the 'nodejs' package before running this script."
 fi
-
+echo `dirname $0`
 cd $rootdir
 rm -f *.json
 
 for filename in *.coffee; do
     slug="${filename%.*}"
 { NODE_PATH=$mydir/node_modules $NODE > "$slug".json << EOF
-    require('coffee-script/register');
+    require('coffeescript/register');
     var dt = require('@resin.io/device-types');
     var manifest = require('./${filename}');
     var slug = '${slug}';
